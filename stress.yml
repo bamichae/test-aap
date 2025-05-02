@@ -1,10 +1,6 @@
 - hosts: all
+  gather_facts: no
   tasks:
-    - name: peg two cores for 2 min
-      ansible.builtin.command:
-        argv:
-          - stress
-          - --cpu
-          - "2"
-          - --timeout
-          - "120"
+    - name: Synthetic core stress
+      ansible.builtin.shell: |
+        timeout 120 bash -c 'yes > /dev/null'
