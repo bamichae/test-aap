@@ -1,0 +1,10 @@
+- hosts: all
+  tasks:
+    - name: peg two cores for 2 min
+      ansible.builtin.command:
+        argv:
+          - stress
+          - --cpu
+          - "2"
+          - --timeout
+          - "120"
