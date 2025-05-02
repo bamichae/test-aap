@@ -1,6 +1,9 @@
 - hosts: all
-  gather_facts: no
+  gather_facts: false
   tasks:
     - name: Synthetic core stress
       ansible.builtin.shell: |
         timeout 120 bash -c 'yes > /dev/null'
+      register: stress_result
+      changed_when: false
+      failed_when: stress_result.rc not in [0, 124]
